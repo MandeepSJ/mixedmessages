@@ -5,23 +5,68 @@ console.log('Hello dear user, tell me your name and your date of birth, not incl
 //This collects the relavent data from the arguments the user puts in when running the program
 const userName = process.argv[2];
 const month = process.argv[3];
-const day = process.argv[4];
+const day = parseInt(process.argv[4]);
 
-//The code below figures out the horoscope of the user and logs another message to the console
-let starSign = 'nil'
-
-function defineStarSign(month, day) {
-    if(month === 'January') {
-    if(day < 20) {
-        return starSign = 'Capricorn';
-    } else {
-        return starSign = 'Aquarius';
+// This function checks that the birthday entered is valid
+function isInputValid(month, day) {
+    const months = {
+        January: 31,
+        February: 29,
+        March: 31,
+        April: 30,
+        May: 31,
+        June: 30,
+        July: 31,
+        August: 31,
+        September: 30,
+        October: 31,
+        November: 30,
+        December: 31
     }
+
+    return months[month] && day >= 1 && day <= months[month]; 
 }
+
+//This function figures out the star sign of the user depending on the birthday of the user
+function defineStarSign(month, day) {
+  
+    switch(month) {
+        case 'January':
+            return day < 20 ? 'Capricorn' : 'Aquarius'
+        case 'February':
+            return day < 19 ? 'Aquarius' : 'Pisces'
+        case 'March':
+            return day < 21 ? 'Pisces' : 'Aries'
+        case 'April':
+            return day < 20 ? 'Aries' : 'Taurus'
+        case 'May':
+            return day < 21 ? 'Taurus' : 'Gemini'
+        case 'June':
+            return day < 21 ? 'Gemini' : 'Cancer'
+        case 'July':
+            return day < 23 ? 'Cancer' : 'Leo'
+        case 'August':
+            return day < 23 ? 'Leo' : 'Virgo'
+        case 'September':
+            return day < 23 ? 'Virgo' : 'Libra'
+        case 'October':
+            return day < 23 ? 'Libra' : 'Scorpio'
+        case 'November':
+            return day < 22 ? 'Scorpio' : 'Sagittarius'
+        case 'December':
+            return day < 22 ? 'Sagittarius' : 'Capricorn'
+        default:
+            return null
+    }
 };
 
-defineStarSign(month, day);
-console.log(`${starSign}`);
+//As long as the date is valid this returns a string greeting the user and telling them their star sign
+if(!isInputValid(month, day)) {
+    console.log('Please enter a valid date of birth eg. November 11')
+} else {
+    const starSign = defineStarSign(month, day);
+    console.log(`Hello ${userName}, your zodiac sign is ${starSign}`);
+}
 
 
 
