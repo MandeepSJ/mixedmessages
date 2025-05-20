@@ -85,8 +85,3 @@ if(!isInputValid(month, day)) {
     console.log(`Hello ${userName}, your zodiac sign is ${starSign}`);
     console.log('Let me tell you what is written in the stars for you'); 
 };
-
-
-
-
-
