@@ -77,16 +77,24 @@ if(!userName || !month || !day) {
     process.exit();
 }
 
+const starSign = defineStarSign(month, day);
+
 //As long as the date is valid this returns a string greeting the user and telling them their star sign
 if(!isInputValid(month, day)) {
     console.log('Please enter a valid date of birth eg. November 11')
 } else {
-    const starSign = defineStarSign(month, day);
     console.log(`Hello ${userName}, your zodiac sign is ${starSign}`);
     console.log('Let me tell you what is written in the stars for you'); 
 };
 
-const horoscopes = {
+function getRandomIndex() {
+    return Math.round(Math.random());
+}
+
+//A function that will return a random horoscope for each star sign
+function randomHoroscopeReading(starSign) {
+    
+    const horoscopes = {
     Aries: [`Listen ${userName} thinks ain't looking good. You are in danger are making rash decisions. Fix up.`, `Your lust for challenges is about to pay off in a big big way, take some big swings`],
     Taurus: [`Listen ${userName} stop being so stubborn, you're about to get yourself in a real pickle. Don't cut off your nose to spite your face`, `Your loyalty to those close to you is going to pay dividends in the months to come, someone is about to bail you out of a very sticky situation`],
     Gemini: [`Listen ${userName} make a bloody decision, you've been dilly dallying for years weighing up your options. Get moving.`, `Your about to meet someone very special ${userName}, keep putting the feelers out there`],
@@ -98,6 +106,16 @@ const horoscopes = {
     Sagittarius: [`Watch your mouth ${userName} many a time in life a man's mouth has broke his nose`, `A season of exploration awaits, take that flight 🌏`],
     Capricorn: [`Loosen up ${userName}, you're getting a reputation for having a stick up your ass`, `All that hardwork is about to pay off, don't give up now, keep hammering 🔨`],
     Aquarius: [`Keep your wits about you ${userName} the vultures are circling 🦅`, `The unique moves that you've been making may draw some funny looks but don't worry you're about to reap the rewards`],
-    Pisces: [`Get your head out the clouds ${userName} it's mental down here!`, `Keep expressing yourself artically people are starting to notice and appreciate your gifts`]
+    Pisces: [`Get your head out the clouds ${userName} it's mental down here!`, `Keep expressing yourself creatively people are starting to notice and appreciate your gifts`]
+    }
+
+    const index = getRandomIndex()
+
+    return horoscopes[starSign][index];
+
 }
+
+const horoscope = randomHoroscopeReading(starSign);
+
+console.log(horoscope);
 
