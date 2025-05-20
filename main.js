@@ -1,11 +1,22 @@
 //I'm going to send a message to the user to prompt them to enter their name and date of birth
 
-console.log('Hello dear user, tell me your name and your date of birth, not including the year. eg. Mandeep January 12')
+console.log('Hello dear user, tell me your name and your date of birth, not including the year. eg. Mandeep January 12');
 
 //This collects the relavent data from the arguments the user puts in when running the program
 const userName = process.argv[2];
-const month = process.argv[3];
+const monthInput = process.argv[3];
 const day = parseInt(process.argv[4]);
+
+//This function makes sure that whichever case the month is written in, it is converted to the same case
+function formatMonth(monthInput) {
+    if(!monthInput) {
+        return null;
+    }
+    const lower = monthInput.toLowerCase();
+    return lower.charAt(0).toUpperCase() + lower.slice(1);
+}
+
+const month = formatMonth(monthInput);
 
 // This function checks that the birthday entered is valid
 function isInputValid(month, day) {
@@ -60,13 +71,21 @@ function defineStarSign(month, day) {
     }
 };
 
+//If any of the inputs are missing, the code will not execute
+if(!userName || !month || !day) {
+    console.log('Please enter your name, and your birthday in month/day format eg. Mandeep November 11');
+    process.exit();
+}
+
 //As long as the date is valid this returns a string greeting the user and telling them their star sign
 if(!isInputValid(month, day)) {
     console.log('Please enter a valid date of birth eg. November 11')
 } else {
     const starSign = defineStarSign(month, day);
     console.log(`Hello ${userName}, your zodiac sign is ${starSign}`);
-}
+    console.log('Let me tell you what is written in the stars for you'); 
+};
+
 
 
 
