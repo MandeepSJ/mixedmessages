@@ -85,3 +85,19 @@ if(!isInputValid(month, day)) {
     console.log(`Hello ${userName}, your zodiac sign is ${starSign}`);
     console.log('Let me tell you what is written in the stars for you'); 
 };
+
+const horoscopes = {
+    Aries: [`Listen ${userName} thinks ain't looking good. You are in danger are making rash decisions. Fix up.`, `Your lust for challenges is about to pay off in a big big way, take some big swings`],
+    Taurus: [`Listen ${userName} stop being so stubborn, you're about to get yourself in a real pickle. Don't cut off your nose to spite your face`, `Your loyalty to those close to you is going to pay dividends in the months to come, someone is about to bail you out of a very sticky situation`],
+    Gemini: [`Listen ${userName} make a bloody decision, you've been dilly dallying for years weighing up your options. Get moving.`, `Your about to meet someone very special ${userName}, keep putting the feelers out there`],
+    Cancer: [`It's about to be a stormy few months ${userName} get ready for some emotional waves 🏄‍♂️`, `Your home is about to bloom and flourish this month, enjoy yourself and be grateful ${userName}`],
+    Leo: [`Your attention seeking have already put you in the frying pan, now you're about to jump straight into the fire 🔥, wind your neck in`, `${userName} I hope you enjoy fame, your public profile is about to go through the roof`],
+    Virgo: [`Your procrastination has created a tidal wave that is about to crash upon the shores of your peaceful little life, brace yourself`, `The chess moves that you've been making have put you in a powerful position it's time to attack the king ♟️`],
+    Libra: [`The barbarians are at the gate ${userName} stop avoiding conflict`, `After a period of turmoil the storm is about to settle and the clouds will part to a clear blue sky`],
+    Scorpio: [`You're about to deploy the depths of your spite on an unsuspecting victim, think twice about it ${userName}`, `${userName} you're breaking through the cocoon right now, keep pushing`],
+    Sagittarius: [`Watch your mouth ${userName} many a time in life a man's mouth has broke his nose`, `A season of exploration awaits, take that flight 🌏`],
+    Capricorn: [`Loosen up ${userName}, you're getting a reputation for having a stick up your ass`, `All that hardwork is about to pay off, don't give up now, keep hammering 🔨`],
+    Aquarius: [`Keep your wits about you ${userName} the vultures are circling 🦅`, `The unique moves that you've been making may draw some funny looks but don't worry you're about to reap the rewards`],
+    Pisces: [`Get your head out the clouds ${userName} it's mental down here!`, `Keep expressing yourself artically people are starting to notice and appreciate your gifts`]
+}
+
