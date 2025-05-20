@@ -1,22 +1,24 @@
 //I'm going to send a message to the user to prompt them to enter their name and date of birth
 
-console.log('Hello dear user, tell me your name and your date of birth, not including the year. eg. Mandeep January 12');
+console.log('Hello dear user, tell me your name and your date of birth, not including the year. eg. Mandeep mm/dd/yyyy');
 
 //This collects the relavent data from the arguments the user puts in when running the program
 const userName = process.argv[2];
-const monthInput = process.argv[3];
-const day = parseInt(process.argv[4]);
 
-//This function makes sure that whichever case the month is written in, it is converted to the same case
-function formatMonth(monthInput) {
-    if(!monthInput) {
-        return null;
-    }
-    const lower = monthInput.toLowerCase();
-    return lower.charAt(0).toUpperCase() + lower.slice(1);
+const rawDate = new Date(process.argv[3]);
+
+function extractMonth() {
+    const index = rawDate.getMonth();
+    const monthStrings = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+    return monthStrings[index];
 }
 
-const month = formatMonth(monthInput);
+function extractDay() {
+    return rawDate.getDate()
+}
+
+const month = extractMonth();
+const day = extractDay();
 
 // This function checks that the birthday entered is valid
 function isInputValid(month, day) {
@@ -73,7 +75,7 @@ function defineStarSign(month, day) {
 
 //If any of the inputs are missing, the code will not execute
 if(!userName || !month || !day) {
-    console.log('Please enter your name, and your birthday in month/day format eg. Mandeep November 11');
+    console.log('Please enter your name, and your birthday in mm/dd/yyyy format eg. Mandeep 11/04/2002');
     process.exit();
 }
 
@@ -81,7 +83,7 @@ const starSign = defineStarSign(month, day);
 
 //As long as the date is valid this returns a string greeting the user and telling them their star sign
 if(!isInputValid(month, day)) {
-    console.log('Please enter a valid date of birth eg. November 11')
+    console.log('Please enter a valid date of birth eg. 04/31/1995')
 } else {
     console.log(`Hello ${userName}, your zodiac sign is ${starSign}`);
     console.log('Let me tell you what is written in the stars for you'); 
@@ -97,9 +99,9 @@ function randomHoroscopeReading(starSign) {
     const horoscopes = {
     Aries: [`Listen ${userName} thinks ain't looking good. You are in danger are making rash decisions. Fix up.`, `Your lust for challenges is about to pay off in a big big way, take some big swings`],
     Taurus: [`Listen ${userName} stop being so stubborn, you're about to get yourself in a real pickle. Don't cut off your nose to spite your face`, `Your loyalty to those close to you is going to pay dividends in the months to come, someone is about to bail you out of a very sticky situation`],
-    Gemini: [`Listen ${userName} make a bloody decision, you've been dilly dallying for years weighing up your options. Get moving.`, `Your about to meet someone very special ${userName}, keep putting the feelers out there`],
+    Gemini: [`Listen ${userName} make a bloody decision, you've been dilly dallying for years weighing up your options. Get moving.`, `You're about to meet someone very special ${userName}, keep putting the feelers out there`],
     Cancer: [`It's about to be a stormy few months ${userName} get ready for some emotional waves 🏄‍♂️`, `Your home is about to bloom and flourish this month, enjoy yourself and be grateful ${userName}`],
-    Leo: [`Your attention seeking have already put you in the frying pan, now you're about to jump straight into the fire 🔥, wind your neck in`, `${userName} I hope you enjoy fame, your public profile is about to go through the roof`],
+    Leo: [`Your attention seeking has already put you in the frying pan, now you're about to jump straight into the fire 🔥, wind your neck in`, `${userName} I hope you enjoy fame, your public profile is about to go through the roof`],
     Virgo: [`Your procrastination has created a tidal wave that is about to crash upon the shores of your peaceful little life, brace yourself`, `The chess moves that you've been making have put you in a powerful position it's time to attack the king ♟️`],
     Libra: [`The barbarians are at the gate ${userName} stop avoiding conflict`, `After a period of turmoil the storm is about to settle and the clouds will part to a clear blue sky`],
     Scorpio: [`You're about to deploy the depths of your spite on an unsuspecting victim, think twice about it ${userName}`, `${userName} you're breaking through the cocoon right now, keep pushing`],
@@ -118,4 +120,5 @@ function randomHoroscopeReading(starSign) {
 const horoscope = randomHoroscopeReading(starSign);
 
 console.log(horoscope);
+
 
